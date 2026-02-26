@@ -17,31 +17,24 @@
 
     <header class="hero">
       <div class="hero-top">
-        <div class="lang-switcher">
-          <span data-i18n="language.label">שפה</span>
-          <div id="language-chip-group" class="lang-chip-group" role="group" aria-label="בחירת שפה" data-i18n-aria-label="language.selectorAria">
-            <button type="button" class="lang-chip" data-lang="he">עברית</button>
-            <button type="button" class="lang-chip" data-lang="ar">العربية</button>
-            <button type="button" class="lang-chip" data-lang="en">English</button>
-          </div>
+        <div class="hero-title-row">
+          <img
+            src="./assets/abraham-initiatives-logo.png"
+            alt="לוגו יוזמות אברהם"
+            data-i18n-alt="brand.logoAlt"
+            class="hero-logo"
+          />
+          <h1 data-i18n="hero.title">לוח מעקב קורבנות רצח</h1>
         </div>
-      </div>
-      <h1 data-i18n="hero.title">לוח מעקב קורבנות רצח</h1>
-      <div class="hero-actions">
-        <a href="../data/homicides_normalized.csv" data-i18n="hero.downloadNormalized">הורדת CSV מנורמל</a>
-        <a href="../data/year_summary.csv" data-i18n="hero.downloadSummary">הורדת סיכום שנתי</a>
+        <div id="language-chip-group" class="lang-chip-group" role="group" aria-label="בחירת שפה" data-i18n-aria-label="language.selectorAria">
+          <button type="button" class="lang-chip" data-lang="he">עברית</button>
+          <button type="button" class="lang-chip" data-lang="ar">العربية</button>
+          <button type="button" class="lang-chip" data-lang="en">English</button>
+        </div>
       </div>
     </header>
 
     <main>
-      <section class="panel brand-strip">
-        <img
-          src="./assets/abraham-initiatives-logo.png"
-          alt="לוגו יוזמות אברהם"
-          data-i18n-alt="brand.logoAlt"
-          class="brand-logo"
-        />
-      </section>
       <div class="dashboard-layout">
         <aside class="panel filters-sidebar">
           <h2 data-i18n="filters.title">סינון</h2>

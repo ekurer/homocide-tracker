@@ -65,22 +65,13 @@ main {
   flex-wrap: wrap;
 }
 
-.eyebrow {
-  margin: 0;
-  color: var(--accent);
-  text-transform: uppercase;
-  font-weight: 600;
-  letter-spacing: 0.11em;
-  font-size: 0.75rem;
-}
-
 h1,
 h2 {
   font-family: "Sora", sans-serif;
 }
 
 h1 {
-  margin: 0.4rem 0 0.5rem;
+  margin: 0;
   font-size: clamp(1.8rem, 2.7vw, 2.9rem);
 }
 
@@ -89,30 +80,17 @@ h2 {
   font-size: 1.05rem;
 }
 
-.subhead {
-  margin: 0;
-  color: var(--ink-soft);
-  max-width: 65ch;
-}
-
-.hero-actions {
-  margin-top: 0.9rem;
+.hero-title-row {
   display: flex;
-  gap: 0.9rem;
+  align-items: center;
+  gap: 0.8rem;
   flex-wrap: wrap;
 }
 
-.hero-actions a {
-  color: var(--accent);
-  font-weight: 600;
-}
-
-.lang-switcher {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.84rem;
-  color: var(--ink-soft);
+.hero-logo {
+  width: clamp(150px, 20vw, 260px);
+  height: auto;
+  display: block;
 }
 
 .lang-chip-group {
@@ -162,20 +140,6 @@ h2 {
   grid-template-columns: 300px minmax(0, 1fr);
   gap: 1rem;
   align-items: start;
-}
-
-.brand-strip {
-  margin-bottom: 1rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(180deg, #fffdf8 0%, #f8f0e4 100%);
-}
-
-.brand-logo {
-  width: min(620px, 92vw);
-  height: auto;
-  display: block;
 }
 
 .dashboard-content {
@@ -357,6 +321,10 @@ tbody tr:hover {
 
   .hero-top {
     align-items: flex-start;
+  }
+
+  .hero-title-row {
+    gap: 0.45rem;
   }
 
   .kpis {
