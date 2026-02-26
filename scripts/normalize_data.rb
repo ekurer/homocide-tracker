@@ -7,7 +7,7 @@ require "date"
 require "fileutils"
 
 ROOT = File.expand_path("..", __dir__)
-RAW_GLOB = File.join(ROOT, "*.csv")
+RAW_GLOB = File.join(ROOT, "raw_csv", "*.csv")
 OUTPUT_DIR = File.join(ROOT, "data")
 
 OUTPUT_HEADERS = [

@@ -4,6 +4,7 @@ Public-facing homicide dashboard for researchers, journalists, and the public.
 
 ## What this repo now includes
 
+- `raw_csv/`: Yearly source CSV files (raw input, kept out of repo root).
 - `scripts/normalize_data.rb`: Normalizes all yearly raw CSVs into one canonical dataset.
 - `data/homicides_normalized.csv`: Unified table across years.
 - `data/homicides_normalized.json`: Same data in JSON for dashboard performance.
