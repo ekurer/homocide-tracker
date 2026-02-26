@@ -24,11 +24,11 @@ const AREA_MAP_DEFINITIONS = {
 
 const I18N = {
   he: {
-    meta: { title: "לוח מעקב קורבנות רצח" },
+    meta: { title: "לוח מעקב קורבנות רצח בחברה הערבית בישראל" },
     language: { label: "שפה", selectorAria: "בחירת שפה" },
     brand: { logoAlt: "לוגו יוזמות אברהם" },
     hero: {
-      title: "לוח מעקב קורבנות רצח",
+      title: "לוח מעקב קורבנות רצח בחברה הערבית בישראל",
       downloadNormalized: "הורדת CSV מנורמל",
       downloadSummary: "הורדת סיכום שנתי"
     },
@@ -132,11 +132,11 @@ const I18N = {
     }
   },
   ar: {
-    meta: { title: "لوحة تتبع ضحايا القتل" },
+    meta: { title: "لوحة تتبع ضحايا القتل في المجتمع العربي في إسرائيل" },
     language: { label: "اللغة", selectorAria: "اختيار اللغة" },
     brand: { logoAlt: "شعار مبادرات إبراهيم" },
     hero: {
-      title: "لوحة تتبع ضحايا القتل",
+      title: "لوحة تتبع ضحايا القتل في المجتمع العربي في إسرائيل",
       downloadNormalized: "تنزيل CSV الموحّد",
       downloadSummary: "تنزيل الملخص السنوي"
     },
@@ -240,11 +240,11 @@ const I18N = {
     }
   },
   en: {
-    meta: { title: "Homicide Victim Tracker" },
+    meta: { title: "Homicide Victim Tracker in Arab Society in Israel" },
     language: { label: "Language", selectorAria: "Select language" },
     brand: { logoAlt: "Abraham Initiatives logo" },
     hero: {
-      title: "Homicide Victim Tracker",
+      title: "Homicide Victim Tracker in Arab Society in Israel",
       downloadNormalized: "Download normalized CSV",
       downloadSummary: "Download year summary"
     },

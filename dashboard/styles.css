@@ -62,7 +62,7 @@ main {
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 
 h1,
@@ -83,14 +83,20 @@ h2 {
 .hero-title-row {
   display: flex;
   align-items: center;
-  gap: 0.8rem;
-  flex-wrap: wrap;
+  gap: 0.55rem;
+  flex-wrap: nowrap;
+  min-width: 0;
 }
 
 .hero-logo {
-  width: clamp(150px, 20vw, 260px);
+  width: clamp(90px, 12vw, 150px);
   height: auto;
   display: block;
+  flex: 0 0 auto;
+}
+
+.hero-title-row h1 {
+  min-width: 0;
 }
 
 .lang-chip-group {
@@ -320,11 +326,12 @@ tbody tr:hover {
   }
 
   .hero-top {
+    flex-wrap: wrap;
     align-items: flex-start;
   }
 
   .hero-title-row {
-    gap: 0.45rem;
+    gap: 0.4rem;
   }
 
   .kpis {
