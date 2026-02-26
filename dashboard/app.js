@@ -592,7 +592,7 @@ function populateFilterOptions({ preserveSelection = true } = {}) {
   setOptions(
     ui.year,
     [...new Set(state.allRecords.map((record) => record.year))].sort((a, b) => a - b).map(String),
-    (value) => formatNumber(Number(value))
+    (value) => formatYear(value)
   );
   setOptions(ui.area, uniqueValues(state.allRecords, "geographic_area"));
   setOptions(ui.district, uniqueValues(state.allRecords, "district_state"));
@@ -709,6 +709,18 @@ function applyFilters() {
 
 function formatNumber(value) {
   return new Intl.NumberFormat(getLocale()).format(value);
+}
+
+function formatYear(value) {
+  const numericYear = Number(value);
+  if (!Number.isFinite(numericYear)) {
+    return String(value);
+  }
+
+  return new Intl.NumberFormat(getLocale(), {
+    useGrouping: false,
+    maximumFractionDigits: 0
+  }).format(numericYear);
 }
 
 function formatPct(value, total) {
