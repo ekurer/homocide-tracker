@@ -71,8 +71,8 @@ const I18N = {
       weapon: "כלי הרג",
       status: "סטטוס",
       sources: "מקורות",
-      link1: "קישור 1",
-      link2: "קישור 2"
+      link1: "קישור",
+      link2: "קישור"
     },
     methodology: {
       title: "הערות מתודולוגיה",
@@ -179,8 +179,8 @@ const I18N = {
       weapon: "أداة القتل",
       status: "الحالة",
       sources: "المصادر",
-      link1: "رابط 1",
-      link2: "رابط 2"
+      link1: "رابط",
+      link2: "رابط"
     },
     methodology: {
       title: "ملاحظات منهجية",
@@ -287,8 +287,8 @@ const I18N = {
       weapon: "Weapon",
       status: "Status",
       sources: "Sources",
-      link1: "Link 1",
-      link2: "Link 2"
+      link1: "Link",
+      link2: "Link"
     },
     methodology: {
       title: "Methodology notes",
@@ -400,6 +400,10 @@ function getDirection() {
   return LANGUAGE_META[state.language].dir;
 }
 
+function isRtlLanguage() {
+  return getDirection() === "rtl";
+}
+
 function getNestedTranslation(obj, key) {
   return key.split(".").reduce((value, part) => (value && value[part] !== undefined ? value[part] : undefined), obj);
 }
@@ -491,11 +495,12 @@ function setLanguage(language, { persist = true } = {}) {
 }
 
 function createPlotTheme() {
+  const rtl = isRtlLanguage();
   return {
     paper_bgcolor: "rgba(0,0,0,0)",
     plot_bgcolor: "rgba(0,0,0,0)",
     font: { family: "IBM Plex Sans, sans-serif", color: "#10222e", size: 12 },
-    margin: { t: 20, r: 24, b: 46, l: 52 }
+    margin: { t: 20, r: rtl ? 52 : 24, b: 46, l: rtl ? 24 : 52 }
   };
 }
 
@@ -965,7 +970,7 @@ function renderYearTrend(records) {
     traces,
     {
       ...createPlotTheme(),
-      xaxis: { title: t("axis.year"), fixedrange: true },
+      xaxis: { title: t("axis.year"), fixedrange: true, ...(isRtlLanguage() ? { autorange: "reversed" } : {}) },
       yaxis: { title: t("axis.victims"), fixedrange: true },
       annotations,
       legend: projection ? { orientation: "h", y: 1.12, x: 0 } : undefined
@@ -976,7 +981,9 @@ function renderYearTrend(records) {
 
 function renderGenderTrend(records) {
   const years = [...new Set(records.map((record) => record.year))].sort((a, b) => a - b);
-  const genders = ["Male", "Female", "Unknown"];
+  const genders = ["Male", "Female", "Unknown"].filter(
+    (gender) => gender !== "Unknown" || records.some((record) => record.gender === "Unknown")
+  );
   const colors = { Male: "#1d4e89", Female: "#e26d5a", Unknown: "#8a8a8a" };
 
   const traces = genders.map((gender) => ({
@@ -993,7 +1000,7 @@ function renderGenderTrend(records) {
     {
       ...createPlotTheme(),
       barmode: "stack",
-      xaxis: { title: t("axis.year"), fixedrange: true },
+      xaxis: { title: t("axis.year"), fixedrange: true, ...(isRtlLanguage() ? { autorange: "reversed" } : {}) },
       yaxis: { title: t("axis.victims"), fixedrange: true }
     },
     { displayModeBar: false, responsive: true }
@@ -1040,7 +1047,7 @@ function renderDistrictChart(records) {
     {
       ...createPlotTheme(),
       xaxis: { title: t("axis.victims"), fixedrange: true },
-      yaxis: { fixedrange: true }
+      yaxis: { fixedrange: true, side: isRtlLanguage() ? "right" : "left" }
     },
     { displayModeBar: false, responsive: true }
   );
@@ -1060,7 +1067,11 @@ function renderLocalityChart(records) {
     ],
     {
       ...createPlotTheme(),
-      xaxis: { fixedrange: true, tickangle: -35 },
+      xaxis: {
+        fixedrange: true,
+        tickangle: isRtlLanguage() ? 35 : -35,
+        ...(isRtlLanguage() ? { autorange: "reversed" } : {})
+      },
       yaxis: { title: t("axis.victims"), fixedrange: true }
     },
     { displayModeBar: false, responsive: true }
@@ -1102,7 +1113,8 @@ function renderMonthlyChart(records) {
         tickmode: "array",
         tickvals: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
         ticktext: getMonthLabels(),
-        fixedrange: true
+        fixedrange: true,
+        ...(isRtlLanguage() ? { autorange: "reversed" } : {})
       },
       yaxis: { title: t("axis.victims"), fixedrange: true }
     },

@@ -298,6 +298,27 @@ def age_group(age)
   end
 end
 
+def normalize_district_state(value)
+  text = clean_text(value)
+  return "" if text.empty? || text == "#N/A"
+
+  normalized = text.tr("־", "-")
+  normalized = normalized.gsub(/\s+/, " ").strip
+
+  case normalized
+  when "תל-אביב", "תל אביב-יפו"
+    "תל אביב"
+  when "המרכז"
+    "מרכז"
+  when "הצפון"
+    "צפון"
+  when "הדרום", "דרם"
+    "דרום"
+  else
+    normalized
+  end
+end
+
 def infer_month(month_raw, event_date, death_date)
   month = parse_int(month_raw)
   month ||= event_date&.dig(:month)
@@ -404,7 +425,7 @@ raw_files.each do |file_path|
       "residence_population_type" => first_present_value(row, header_map, :residence_population_type),
       "geographic_area" => first_present_value(row, header_map, :geographic_area),
       "geographic_area_alt" => first_present_value(row, header_map, :geographic_area_alt),
-      "district_state" => first_present_value(row, header_map, :district_state),
+      "district_state" => normalize_district_state(first_present_value(row, header_map, :district_state)),
       "district_police" => first_present_value(row, header_map, :district_police),
       "event_date_raw" => event_raw,
       "event_date_iso" => event_date&.dig(:date)&.iso8601,
